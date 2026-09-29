@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bernice — Student Portfolio</title>
+<meta name="description" content="Portofolio pelajar SMP dengan gaya editorial minimal, hangat, dan modern.">
+<style>
+:root{
+  --bg:#dfe1e0;
+  --paper:#f8f6f0;
+  --ink:#101113;
+  --muted:#59616b;
+  --line:#d7d5ce;
+  --blue:#9fc0dc;
+  --blue-dark:#759bbd;
+  --white:#fffefa;
+  --radius:3px;
+  --shadow:0 2px 10px rgba(24,28,32,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.45;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.page{
+  width:min(1180px, calc(100% - 32px));
+  margin:28px auto 56px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.card{
+  position:relative;
+  overflow:hidden;
+  background:var(--paper);
+  min-height:390px;
+  padding:24px 25px;
+  box-shadow:var(--shadow);
+}
+.card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding-bottom:9px;
+  border-bottom:1px solid var(--line);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:#20242a;
+}
+.eyebrow{color:#626871}
+h1,h2,h3,p{margin-top:0}
+h1{
+  font-size:47px;
+  line-height:.99;
+  letter-spacing:-.045em;
+  margin:72px 0 18px;
+  max-width:290px;
+}
+h2{
+  font-size:31px;
+  line-height:1.05;
+  letter-spacing:-.035em;
+  margin:27px 0 12px;
+}
+h3{
+  font-size:13px;
+  margin:0 0 4px;
+}
+p{font-size:12px;color:#414851}
+.small{font-size:10px!important}
+.rule{
+  width:23px;height:2px;background:var(--ink);
+  margin:19px 0 26px;
+}
+.pill{
+  border:1px solid #b9bec1;
+  border-radius:999px;
+  padding:3px 8px;
+  font-size:9px;
+  background:rgba(255,255,255,.25);
+}
+.hero{min-height:454px}
+.hero .tagline{font-size:13px;line-height:1.35;max-width:145px}
+.hero .traits{
+  position:absolute;left:25px;bottom:104px;
+  font-size:9px;color:#555d66;
+}
+.hero .year{
+  position:absolute;left:25px;bottom:22px;
+  font-size:10px;font-weight:700;
+}
+.blob{
+  position:absolute;
+  width:220px;height:250px;
+  right:-18px;bottom:0;
+  background:var(--blue);
+  border-radius:58% 42% 0 0 / 45% 55% 0 0;
+  transform:rotate(11deg);
+}
+.photo{
+  position:absolute;
+  right:0;bottom:12px;
+  width:205px;height:235px;
+  border-radius:52% 48% 0 0 / 42% 58% 0 0;
+  overflow:hidden;
+  z-index:2;
+  background:
+    radial-gradient(circle at 53% 31%, #f1c7ae 0 11%, transparent 11.5%),
+    radial-gradient(ellipse at 54% 51%, #222 0 22%, transparent 22.5%),
+    linear-gradient(135deg,#25282c 0 45%,#b9c7cf 45% 100%);
+}
+.photo:before{
+  content:"";
+  position:absolute;left:61px;top:58px;
+  width:84px;height:116px;border-radius:48% 48% 42% 42%;
+  background:#e4ad93;
+  transform:rotate(-5deg);
+}
+.photo:after{
+  content:"";
+  position:absolute;left:58px;top:45px;
+  width:96px;height:60px;border-radius:55% 45% 48% 52%;
+  background:#222;
+  box-shadow:-16px 18px 0 -3px #222, 18px 17px 0 -5px #222;
+}
+.scribble{
+  position:absolute;right:16px;bottom:18px;
+  font-size:38px;z-index:4;transform:rotate(-8deg)
+}
+.quote{
+  position:absolute;right:22px;top:106px;
+  width:70px;font-size:13px;line-height:1.25;
+  transform:rotate(-7deg);
+}
+.info-list{margin-top:20px}
+.info-row{
+  display:grid;grid-template-columns:25px 1fr;
+  gap:8px;padding:9px 0;border-bottom:1px solid var(--line);
+  font-size:10px;
+}
+.icon{
+  width:22px;height:22px;border-radius:50%;
+  display:grid;place-items:center;
+  font-size:13px;background:transparent;
+}
+.info-row strong{display:block;font-size:9px}
+.info-row span{color:#59616b}
+.skill{margin:20px 0}
+.skill-top{display:flex;align-items:center;gap:12px}
+.skill-icon{
+  flex:0 0 43px;width:43px;height:43px;border-radius:50%;
+  background:#d6e1eb;display:grid;place-items:center;font-size:19px;
+}
+.skill-name{
+  display:inline-block;background:#ecebe5;
+  border-radius:10px;padding:3px 10px;font-weight:700;font-size:10px;
+}
+.bar{
+  margin:8px 0 0 55px;height:6px;background:#dededb;border-radius:99px;overflow:hidden;
+}
+.bar i{display:block;height:100%;width:78%;background:var(--blue-dark);border-radius:99px}
+.timeline{margin-top:26px}
+.job{
+  display:grid;grid-template-columns:55px 1fr;
+  position:relative;padding:0 0 25px;
+}
+.job:before{
+  content:"";position:absolute;left:54px;top:4px;bottom:-2px;width:1px;background:#8e969d;
+}
+.job:last-child:before{display:none}
+.job .date{font-weight:700;font-size:10px}
+.job .dot{
+  position:absolute;left:50px;top:1px;
+  width:9px;height:9px;border-radius:50%;background:#59616b;
+  border:2px solid var(--paper);box-shadow:0 0 0 1px #9aa0a4;
+}
+.job .content{padding-left:28px}
+.job ul{padding-left:15px;margin:5px 0 0}
+.job li{font-size:9px;color:#59616b;margin:2px 0}
+.projects-intro{max-width:290px}
+.project-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;margin-top:14px;
+}
+.project-thumb{
+  height:93px;border-radius:5px;overflow:hidden;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  font-weight:800;letter-spacing:-.04em;font-size:18px;
+}
+.project-thumb.one{background:#234e80;color:white}
+.project-thumb.two{background:#d8e7c4;color:#5f7a46}
+.project-thumb.three{background:#1d1d1f;color:white}
+.project-thumb.four{background:#e9ddc3;color:#4b4b42}
+.project-thumb span{position:relative;z-index:1}
+.project-thumb:after{
+  content:"";position:absolute;width:70px;height:70px;border-radius:50%;
+  border:1px solid currentColor;opacity:.35;right:-12px;bottom:-20px;
+}
+.project h3{font-size:9px;margin:7px 0 3px}
+.project p{font-size:8px;line-height:1.3;margin:0}
+.edu-group{margin-top:22px}
+.edu-head{display:flex;align-items:center;gap:12px}
+.edu-icon{
+  width:45px;height:45px;border-radius:50%;background:#d6e1eb;
+  display:grid;place-items:center;font-size:20px;flex:none
+}
+.edu-group ul{margin:8px 0 0 58px;padding-left:12px}
+.edu-group li{font-size:10px;margin:5px 0;color:#4e5660}
+.corner-blue{
+  position:absolute;width:120px;height:100px;
+  right:-28px;bottom:-34px;background:var(--blue);
+  border-radius:70% 30% 0 0;transform:rotate(-22deg)
+}
+.contact h2{max-width:280px}
+.contact-list{margin-top:28px}
+.contact-row{display:flex;gap:10px;align-items:center;margin:12px 0;font-size:10px}
+.contact-row b{font-size:15px;width:18px;text-align:center}
+.contact-note{
+  position:absolute;right:25px;bottom:105px;width:88px;
+  font-size:14px;line-height:1.2;transform:rotate(-8deg)
+}
+.arrow{font-size:31px;position:absolute;right:35px;bottom:46px;transform:rotate(25deg)}
+.thanks{
+  min-height:288px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+}
+.thanks h2{font-size:41px;margin:0 0 18px}
+.thanks .mini{font-size:10px;color:#59616b}
+.thanks .signature{margin-top:42px;font-size:10px}
+.blue-card{
+  min-height:288px;background:var(--blue);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+}
+.blue-card .title{font-size:10px;margin-bottom:6px}
+.blue-card .year{font-size:10px}
+.wave{
+  width:80px;height:25px;border-bottom:2px solid white;
+  border-radius:0 0 50% 50%;transform:rotate(-8deg);margin-top:15px
+}
+.nav{
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+  z-index:20;display:flex;gap:4px;padding:5px;
+  background:rgba(248,246,240,.86);backdrop-filter:blur(10px);
+  border:1px solid rgba(0,0,0,.08);border-radius:999px;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+.nav a{font-size:9px;padding:7px 10px;border-radius:999px}
+.nav a:hover{background:#e6e4de}
+.reveal{animation:rise .7s ease both}
+.reveal:nth-child(2){animation-delay:.06s}.reveal:nth-child(3){animation-delay:.12s}
+.reveal:nth-child(4){animation-delay:.18s}.reveal:nth-child(5){animation-delay:.24s}
+.reveal:nth-child(6){animation-delay:.3s}.reveal:nth-child(7){animation-delay:.36s}
+.reveal:nth-child(8){animation-delay:.42s}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){
+  .page{width:min(100% - 20px, 480px);margin:10px auto 80px}
+  .grid{grid-template-columns:1fr;gap:12px}
+  .card,.hero{min-height:410px}
+  .project-grid{gap:13px}
+  .nav{max-width:calc(100% - 20px);overflow:auto}
+  .nav a{white-space:nowrap}
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Navigasi">
+  <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">School</a>
+  <a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a>
+</nav>
+
+<main class="page">
+  <section class="grid">
+    <article class="card hero reveal" id="home">
+      <div class="card-head"><span>PORTFOLIO</span><span class="pill">Student Portfolio</span></div>
+      <h1>My<br>Portfolio</h1>
+      <p class="tagline">Little steps,<br>big dreams.</p>
+      <div class="rule"></div>
+      <p class="traits">Curious • Creative • Always Learning</p>
+      <div class="year">2026</div>
+      <div class="blob"></div>
+      <div class="photo" aria-label="Placeholder foto profil"></div>
+      <div class="scribble">♡</div>
+    </article>
+
+    <article class="card reveal" id="about">
+      <div class="card-head"><span>01</span><span>About Me</span></div>
+      <h2>About Me</h2><div class="rule"></div>
+      <h3>Hi, I’m Bernice!</h3>
+      <p>Saya adalah pelajar SMP yang suka mencoba hal baru, terutama di bidang desain, teknologi, dan kegiatan sekolah. Saya percaya bahwa belajar, mencoba, dan berani berkarya adalah bagian dari proses menjadi lebih baik.</p>
+      <div class="quote">Good<br>Things<br>Take<br>Time<br>☺</div>
+      <div class="info-list">
+        <div class="info-row"><div class="icon">♙</div><div><strong>Name</strong><span>Bernice</span></div></div>
+        <div class="info-row"><div class="icon">⌖</div><div><strong>Location</strong><span>Indonesia</span></div></div>
+        <div class="info-row"><div class="icon">✉</div><div><strong>Email</strong><span>email-kamu@example.com</span></div></div>
+        <div class="info-row"><div class="icon">⌑</div><div><strong>Education</strong><span>SMP (Kelas 8)</span></div></div>
+      </div>
+    </article>
+
+    <article class="card reveal" id="skills">
+      <div class="card-head"><span>02</span><span>Skills</span></div>
+      <h2>My Skills</h2><div class="rule"></div>
+      <p>Kemampuan dan hal-hal yang sedang saya pelajari untuk mendukung kegiatan sekolah dan karya kreatif.</p>
+      <div class="skill"><div class="skill-top"><div class="skill-icon">✎</div><div><span class="skill-name">Design</span><p class="small">Canva, ibisPaint, PowerPoint,<br>menggambar dan desain sederhana</p></div></div><div class="bar"><i style="width:82%"></i></div></div>
+      <div class="skill"><div class="skill-top"><div class="skill-icon">▣</div><div><span class="skill-name">Digital</span><p class="small">Microsoft Office, Google Workspace,<br>Presentasi & Editing</p></div></div><div class="bar"><i style="width:84%"></i></div></div>
+      <div class="skill"><div class="skill-top"><div class="skill-icon">♧</div><div><span class="skill-name">Soft Skills</span><p class="small">Komunikasi, Kerja Sama, Kreativitas,<br>Manajemen Waktu</p></div></div><div class="bar"><i style="width:88%"></i></div></div>
+    </article>
+
+    <article class="card reveal" id="experience">
+      <div class="card-head"><span>03</span><span>My Activities</span></div>
+      <h2>My Activities</h2><div class="rule"></div>
+      <p>Beberapa kegiatan dan hal yang saya sukai di luar pelajaran sekolah.</p>
+      <div class="timeline">
+        <div class="job"><div class="date">01</div><span class="dot"></span><div class="content"><h3>Drawing & Illustration</h3><p class="small">Creative Hobby</p><ul><li>Menggambar karakter dan membuat ilustrasi sederhana</li><li>Mencoba berbagai gaya dan teknik menggambar</li></ul></div></div>
+        <div class="job"><div class="date">02</div><span class="dot"></span><div class="content"><h3>Reading & Learning</h3><p class="small">Personal Growth</p><ul><li>Membaca buku dan mencari hal baru untuk dipelajari</li><li>Membuat catatan atau rangkuman dari hal menarik</li></ul></div></div>
+        <div class="job"><div class="date">03</div><span class="dot"></span><div class="content"><h3>Playing & Exploring</h3><p class="small">Fun Activities</p><ul><li>Bermain bersama teman dan mencoba kegiatan baru</li><li>Menemukan ide dan inspirasi dari lingkungan sekitar</li></ul></div></div>
+      </div>
+    </article>
+
+    <article class="card reveal" id="projects">
+      <div class="card-head"><span>04</span><span>My Projects</span></div>
+      <h2>My School Projects</h2><div class="rule"></div>
+      <p class="projects-intro">Beberapa karya dan tugas yang saya buat selama belajar di sekolah.</p>
+      <div class="project-grid">
+        <div class="project"><div class="project-thumb one"><span>Learn<br>Together</span></div><h3>Poster Tugas Kelompok</h3><p>Poster untuk kegiatan atau acara kelas.</p></div>
+        <div class="project"><div class="project-thumb two"><span>Study<br>Smart</span></div><h3>Infografis Pelajaran</h3><p>Infografis sederhana untuk membantu memahami materi.</p></div>
+        <div class="project"><div class="project-thumb three"><span>My Class<br>Project</span></div><h3>Desain Aplikasi</h3><p>Ide tampilan aplikasi sederhana yang saya buat.</p></div>
+        <div class="project"><div class="project-thumb four"><span>MY<br>CREATIVE</span></div><h3>Logo Kelompok</h3><p>Logo dan elemen visual untuk tugas kelompok.</p></div>
+      </div>
+    </article>
+
+    <article class="card reveal" id="education">
+      <div class="card-head"><span>05</span><span>Education & Achievements</span></div>
+      <h2>Education & Achievements</h2><div class="rule"></div>
+      <p>Pendidikan dan pencapaian yang menjadi bagian dari perjalanan saya sebagai pelajar.</p>
+      <div class="edu-group"><div class="edu-head"><div class="edu-icon">🎓</div><div><h3>Education</h3><p class="small">SMP Negeri (2024 – 2027)</p></div></div><ul><li>Kelas 8</li><li>Target Pendidikan</li><li>Melanjutkan ke SMA/SMK sesuai minat</li></ul></div>
+      <div class="edu-group"><div class="edu-head"><div class="edu-icon">▣</div><div><h3>Achievements</h3></div></div><ul><li>Lomba atau kegiatan yang pernah diikuti</li><li>Karya atau pencapaian yang dibanggakan</li><li>Sertifikat kegiatan (jika ada)</li></ul></div>
+      <div class="corner-blue"></div>
+    </article>
+
+    <article class="card contact reveal" id="contact">
+      <div class="card-head"><span>06</span><span>Contact</span></div>
+      <h2>Let’s Create Together!</h2><div class="rule"></div>
+      <p>Saya senang belajar, bekerja sama, dan membuat karya baru bersama teman-teman. Yuk bertukar ide!</p>
+      <div class="contact-list">
+        <div class="contact-row"><b>✉</b><span>email-kamu@example.com</span></div>
+        <div class="contact-row"><b>◎</b><span>@username-kamu</span></div>
+        <div class="contact-row"><b>in</b><span>portfolio.example.com</span></div>
+        <div class="contact-row"><b>⌖</b><span>Indonesia</span></div>
+      </div>
+      <div class="contact-note">Feel free<br>to reach<br>out!<br>☺</div>
+      <div class="arrow">↙</div>
+      <div class="corner-blue" style="left:-35px;right:auto;bottom:-48px;transform:rotate(20deg)"></div>
+    </article>
+
+    <article class="card thanks reveal">
+      <h2>Thank You!</h2>
+      <p class="mini">terima kasih sudah melihat portofolio saya.</p>
+      <div class="signature">— &nbsp; Bernice &nbsp; —</div>
+      <div style="position:absolute;left:-35px;top:-35px;width:95px;height:80px;background:var(--blue);border-radius:50%;"></div>
+      <div style="position:absolute;right:-35px;bottom:-35px;width:95px;height:80px;background:var(--blue);border-radius:50%;"></div>
+    </article>
+
+    <article class="card blue-card reveal">
+      <div class="title">My Portfolio</div>
+      <div class="year">2026</div>
+      <div class="wave"></div>
+    </article>
+  </section>
+</main>
+</body>
+</html>
